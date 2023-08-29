@@ -1,0 +1,8 @@
+IdUser,NameSegment,Operation,Timestamp
+2,Seg1,add,2023-08-29T20:16:07Z
+2,Seg2,add,2023-08-29T20:16:07Z
+1,Seg1,add,2023-08-29T20:18:10Z
+1,Seg3,add,2023-08-29T20:18:10Z
+1,Seg3,remove,2023-08-29T20:31:48Z
+2,Seg1,remove,2023-08-29T20:32:17Z
+2,Seg2,remove,2023-08-29T20:32:17Z

@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"log"
 	"strconv"
 
 	"github.com/Mkkysh/AvitoTest/dto"
@@ -10,6 +9,8 @@ import (
 
 type UserServiceInt interface {
 	UpdateSegment(id int, AddSegments []interface{}, RemoveSegments []interface{}) error
+
+	GetSegemnts(id int) ([]interface{}, error)
 }
 
 type UserController struct {
@@ -28,7 +29,6 @@ func (u *UserController) UpdateSegment(ctx *fiber.Ctx) error {
 
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
-		log.Print(err)
 		return err
 	}
 
@@ -41,6 +41,34 @@ func (u *UserController) UpdateSegment(ctx *fiber.Ctx) error {
 	//log.Println(dto.AddSegments)
 
 	err = u.UserService.UpdateSegment(id, dto.AddSegments, dto.RemoveSegments)
+	if err != nil {
+		return err
+	}
+
+	ctx.Status(fiber.StatusOK)
+
+	return nil
+}
+
+func (c *UserController) GetSegemnts(ctx *fiber.Ctx) error {
+	idStr := ctx.Params("id")
+
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		return err
+	}
+
+	segments, err := c.UserService.GetSegemnts(id)
+	if err != nil {
+		return err
+	}
+
+	if len(segments) == 0 {
+		ctx.Status(fiber.StatusNotFound)
+		return nil
+	}
+
+	err = ctx.JSON(segments)
 	if err != nil {
 		return err
 	}
