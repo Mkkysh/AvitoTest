@@ -23,7 +23,7 @@ func (r *Router) Run(fiberApp *fiber.App, db *sql.DB) {
 
 	logs.Get("/", logController.Get)
 
-	segmentService := services.NewSegmentService(db)
+	segmentService := services.NewSegmentService(db, logService)
 	segmentController := controllers.NewSegmentController(segmentService)
 	segments := fiberApp.Group("/api/segments")
 

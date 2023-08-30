@@ -6,7 +6,7 @@ import (
 )
 
 type SegmentServiceInt interface {
-	Add(segment models.Segment) error
+	Add(segment models.Segment, partAuto string) error
 	Delete(name string) error
 }
 
@@ -28,7 +28,9 @@ func (s *SegmentController) Add(ctx *fiber.Ctx) error {
 		return err
 	}
 
-	err = s.SegmentService.Add(segment)
+	partAuto := ctx.Query("partAuto")
+
+	err = s.SegmentService.Add(segment, partAuto)
 	if err != nil {
 		return err
 	}
