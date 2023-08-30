@@ -26,7 +26,7 @@ func (a *App) Run() {
 	}
 	a.db = DB
 
-	//defer db.Close(a.db)
+	// defer db.Close(a.db)
 
 	fiberApp := fiber.New()
 	fiberApp.Use(recover.New())
@@ -34,7 +34,12 @@ func (a *App) Run() {
 	router := routes.New()
 	router.Run(fiberApp, a.db)
 
+	fiberApp.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World!")
+	})
+
 	PORT, _ := os.LookupEnv("PORT")
 
 	log.Fatal(fiberApp.Listen(":" + PORT))
+
 }

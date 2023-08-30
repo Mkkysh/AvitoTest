@@ -41,8 +41,8 @@ func (c *LogController) Get(ctx *fiber.Ctx) error {
 
 	filePath := fmt.Sprintf("%s/log_%s.csv", saveDir, date)
 
-	log.Print(filePath)
 	file, err := os.Create(filePath)
+
 	if err != nil {
 		return err
 	}
@@ -79,10 +79,14 @@ func (c *LogController) Get(ctx *fiber.Ctx) error {
 	ctx.Set("Content-Disposition", "attachment; filename=log.csv")
 
 	ctx.Status(fiber.StatusOK)
-	ctx.SendFile(filePath)
+	ctx.Download(filePath)
 
 	defer func() {
-		file.Close()
+
+		err = file.Close()
+		if err != nil {
+			log.Printf("Failed to remove file: %s", err)
+		}
 		err = os.Remove(filePath)
 		if err != nil {
 			log.Printf("Failed to remove file: %s", err)

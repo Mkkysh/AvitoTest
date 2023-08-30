@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./
+    command: ./main
+    depends_on:
+      - db
+    environment:
+      - PORT=8080
+      - DB_PASSWORD=root
+      - DB_USER=postgres
+    ports:
+      - 8080:8080
+
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_PASSWORD=root
+    ports:
+      - 5436:5432
