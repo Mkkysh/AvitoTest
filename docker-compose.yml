@@ -8,7 +8,7 @@ services:
       - db
     environment:
       - PORT=8080
-      - DB_PASSWORD=root
+      - DB_PASSWORD=abcd
       - DB_USER=postgres
     ports:
       - 8080:8080
@@ -20,6 +20,6 @@ services:
       - ./db-data:/var/lib/postgresql/data
       - ./init-scripts:/docker-entrypoint-initdb.d
     environment:
-      - POSTGRES_PASSWORD=root
+      - POSTGRES_PASSWORD=abcd
     ports:
       - 5436:5432
