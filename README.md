@@ -20,3 +20,12 @@ docker-compose up --build app
 go run .\cmd\main.go
 ```
 Также необходимо создать БД в postgres и выполнить sql сприпт для создания таблиц (SQLSchema.SQL в корне проекта).
+# Запросы
+## Segment
+```
+POST http://localhost:8080/api/segments?partAuto=50
+{
+  "name": "Test"
+}
+```
+Запрос на создание сегмента, также опционально можно выбрать процент пользователей, который попадет в сегмент автоматически.
