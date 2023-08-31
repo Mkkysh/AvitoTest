@@ -21,9 +21,8 @@ go run .\cmd\main.go
 ```
 Также необходимо создать БД в postgres и выполнить sql сприпт для создания таблиц (SQLSchema.SQL в корне проекта).
 # Запросы
-## Segment
+## POST http://localhost:8080/api/segments?partAuto=50
 ```
-POST http://localhost:8080/api/segments?partAuto=50
 {
   "name": "Test"
 }
