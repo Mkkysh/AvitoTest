@@ -18,6 +18,7 @@ type App struct {
 func NewApp() *App {
 	return &App{}
 }
+
 func (a *App) Run() {
 
 	DB, err := db.Connect()
@@ -33,10 +34,6 @@ func (a *App) Run() {
 
 	router := routes.New()
 	router.Run(fiberApp, a.db)
-
-	fiberApp.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
 
 	PORT, _ := os.LookupEnv("PORT")
 
