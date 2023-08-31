@@ -21,10 +21,17 @@ go run .\cmd\main.go
 ```
 Также необходимо создать БД в postgres и выполнить sql сприпт для создания таблиц (SQLSchema.SQL в корне проекта).
 # Запросы
-## POST http://localhost:8080/api/segments?partAuto=50
+## Создание сегмента
 ```
+POST http://localhost:8080/api/segments?partAuto=50
 {
   "name": "Test"
 }
 ```
 Запрос на создание сегмента, также опционально можно выбрать процент пользователей, который попадет в сегмент автоматически.
+## Удаление сегмента
+```
+DELETE http://localhost:8080/api/segments?name=Test
+```
+Запрос на удаление
+
