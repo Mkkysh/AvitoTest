@@ -3,4 +3,4 @@
 # База данных
 В рамках задания была выбрана СУБД PostgreSQL
 Схема:
-![Image alt](https://github.com/Mkkysh/AvitoTest/blob/main/Schema.png)
+![Image alt](https://github.com/Mkkysh/AvitoTest/blob/main/SchemaDB.png)
